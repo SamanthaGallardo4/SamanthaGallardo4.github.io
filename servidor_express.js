@@ -1,9 +1,12 @@
-//Ayuda en la comunicación entre el navegador y el servidor
-import http from 'http';
+//Ayuda a crear el servidor y asi se empieza a utilizar express
+import express from 'express';
 //Sirve para leer documentos HTML. 
 import fs from 'fs';
+import path from 'path';
 
-
+const app = express();
+//Express es mas sencillo que HTML en especial en la parte de lor URLS es mas sencillo solo utilizar app.get y empezar el servidor es muchi mas resumido.
+app.use(express.static('public'));
     //Esta función deberá mostrar deberá mostrar una página HTML 
     //con la bienvenida a tu proyecto
     function darBienvenida(req, res) {
@@ -162,44 +165,20 @@ async function getApiExterna(req, res) {
     //incluye el enlace a la documentación de createServer
     const servidor = http.createServer((req, res) => {
       const url = req.url;
+//Ruta en express en mugar de url se usa app.get 
 
-      if (url === '/') {
-        darBienvenida(req, res);
-      } 
-      else if (url === '/api/usuarios') {
-        getUsuarios(req, res);
-      } 
-      else if (url === '/api/movimientos') {
-        getMovimientos(req, res);
-      } 
-      else if (url === '/usuarios') {
-        mostrarUsuarios(req, res);
-      } 
-      else if (url === '/movimientos') {
-        mostrarMovimientos(req, res);
-      } 
-        else if (url === '/perfil') {
-        mostrarPerfil(req, res);
-      } 
-      else if (url === '/equipo') {
-        mostrarEquipo(req, res);
-      } 
-      else if (url === '/opinion') {
-        mostrarOpinion(req, res);
-      } 
-        else if (url === '/api/perfil') {
-        getPerfil(req, res);
-      } 
-      else if (url === '/api/equipo') {
-        getEquipo(req, res);
-      } 
-        else if (url === '/api/externa') {
-      getApiExterna(req, res);
-    }
-    else {
-      manejarRuta404(req, res);
-    }
-    });
+      app.get('/',darBienvenida);
+      app.get( '/api/usuarios',getUsuarios);
+      app.get('/api/movimientos',getMovimientos);
+      app.get('/usuarios',mostrarUsuarios);
+      app.get('/movimientos',mostrarMovimientos);
+      app.get('/equipo',mostrarEquipo);
+      app.get('/opinion',mostrarOpinion);
+      app.get('/api/perfil',getPerfil);
+      app.get('/api/equipo',getPerfil);
+      app.get('/api/externa',getApiExterna);
+      app.use(manejarRuta404);
+   
      
       //Haz una página equipo.html correspondiente
       //Escribe el nombre completo y una cualidad que valores en esa persona de tu equipo
@@ -211,12 +190,6 @@ async function getApiExterna(req, res) {
       // Lee el siguiente artículo y responde ¿Crees que el colonialismo digital es un riesgo para tu carrera profesionl? ¿Para tu vida persona?
       //¿Qué es el freedombox?
       //https://www.aljazeera.com/opinions/2019/3/13/digital-colonialism-is-threatening-the-global-south
-      
-      
-      else {
-        manejarRuta404(req, res);
-      }
-    });
 
     const puerto = 1984;
     servidor.listen(puerto, () => {
