@@ -38,7 +38,7 @@ import fs from 'fs';
       res.writeHead(200, { 'Content-Type': 'application/json' });
       
       //convierte un objeto de JavaScript a texto JSON y se usa porque el servidar necesita enviar el texto al navegador. 
-      res.end(JSON.stringify(mascotas));
+     res.end(JSON.stringify(usuarios));
     }
 
   
