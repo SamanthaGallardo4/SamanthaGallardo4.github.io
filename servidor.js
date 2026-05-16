@@ -212,11 +212,6 @@ async function getApiExterna(req, res) {
       //¿Qué es el freedombox?
       //https://www.aljazeera.com/opinions/2019/3/13/digital-colonialism-is-threatening-the-global-south
       
-      
-      else {
-        manejarRuta404(req, res);
-      }
-    });
 
     const puerto = 1984;
     servidor.listen(puerto, () => {
