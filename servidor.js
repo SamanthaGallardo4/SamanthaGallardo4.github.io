@@ -1,23 +1,20 @@
-//Escribe un comentario explicando para qué sirve http
+//Ayuda en la comunicación entre el navegador y el servidor
 import http from 'http';
-//Escribe un comentario explicando para qué sirve fs
+//Sirve para leer documentos HTML. 
 import fs from 'fs';
 
 
     //Esta función deberá mostrar deberá mostrar una página HTML 
     //con la bienvenida a tu proyecto
     function darBienvenida(req, res) {
-       //Agrega lo mínimo necesario en bienvenida.html
-       
-      
       fs.readFile('bienvenida.html', 'utf8', (error, data) => {
         if (error) {
-           //Escribe qué significa el 500 
+           //500 significa que hubo un error en el servidor.
           res.writeHead(500, { 'Content-Type': 'text/plain' });
           res.end('Oh no!!!!');
           return;
         }
-        //Escribe qué significa el 200
+        //200 significa que todo salio bien.
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(data);
     });
@@ -28,13 +25,19 @@ import fs from 'fs';
     function getUsuarios(req, res) {
         //Esto representa un objeto JSON de un usuario
         //Agrega otro usuario
-        const usuarios = {
-            "nombre": "Punk",
-            "saldo": "0",
-          };  
+        const usuarios = [
+        {
+          nombre: 'Punk',
+          saldo: '0'
+        },
+        {
+          nombre: 'Sam',
+          saldo: '100'
+        }
+      ];
       res.writeHead(200, { 'Content-Type': 'application/json' });
       
-      //Escribe qué hace la función stringify y por qué la tenemos que usar
+      //convierte un objeto de JavaScript a texto JSON y se usa porque el servidar necesita enviar el texto al navegador. 
       res.end(JSON.stringify(mascotas));
     }
 
@@ -66,16 +69,94 @@ import fs from 'fs';
       }
 
     //Esta función deberá enviar un json con los datos de las movimientos
-    function getMoviminientos(req, res) {
-    //Tienes que corregir varias cosas en esta sección
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end('Aquí van los datos de los movimientos financieros');
+    function getMovimientos(req, res) {
+      const movimientos = [
+        {
+          tipo: 'quincena',
+          monto: 100
+        },
+        {
+          tipo: 'pagos comida',
+          monto: 50
+        },
+        {
+          tipo: 'pago casa',
+          monto: 10
+        }
+      ];
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.end(JSON.stringify(movimientos));
     }
+
+     //Agrega una ruta /equipo y su función correspondiente para que muestre el equipo del proyecto
+    function mostrarEquipo(req, res) {
+  fs.readFile('equipo.html', 'utf8', (error, data) => {
+    if (error) {
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('No se pudo cargar equipo.html');
+      return;
+    }
+
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(data);
+  });
+}
+
+    function mostrarOpinion(req, res) {
+  fs.readFile('opinion.html', 'utf8', (error, data) => {
+    if (error) {
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('No se pudo cargar opinion.html');
+      return;
+    }
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(data);
+  });
+}
+
+    function getPerfil(req, res) {
+  const perfil = {
+    nombre: 'Samantha',
+    carrera: 'ITC',
+    semestre: 'Cuarto'
+  };
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.end(JSON.stringify(perfil));
+}
+
+function getEquipo(req, res) {
+  const equipo = [
+    {
+      nombre: 'Sam',
+      cualidad: 'Creativa'
+    },
+    {
+      nombre: 'Punk',
+      cualidad: 'Participativo'
+    },
+  ];
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.end(JSON.stringify(equipo));
+}
+
+async function getApiExterna(req, res) {
+  try {
+    const respuesta = await fetch('https://jsonplaceholder.typicode.com/users');
+    const datos = await respuesta.json();
+
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(datos));
+  } catch (error) {
+    res.writeHead(500, { 'Content-Type': 'text/plain' });
+    res.end('Error al consumir la API externa');
+  }
+}
+
 
     function manejarRuta404(req, res) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       //Cambia el mensaje por algo más divertido
-      res.end('Página no encontrada.');
+      res.end('Si ves este mensaje es porque acabas de borrar la página.');
     }
 
     //incluye el enlace a la documentación de createServer
@@ -84,9 +165,11 @@ import fs from 'fs';
 
       if (url === '/') {
         darBienvenida(req, res);
-      } else if (url === '/api/usuarios') {
+      } 
+      else if (url === '/api/usuarios') {
         getUsuarios(req, res);
-      } else if (url === '/api/movimientos') {
+      } 
+      else if (url === '/api/movimientos') {
         getMovimientos(req, res);
       } 
       else if (url === '/usuarios') {
@@ -95,7 +178,29 @@ import fs from 'fs';
       else if (url === '/movimientos') {
         mostrarMovimientos(req, res);
       } 
-      //Agrega una ruta /equipo y su función correspondiente para que muestre el equipo del proyecto
+        else if (url === '/perfil') {
+        mostrarPerfil(req, res);
+      } 
+      else if (url === '/equipo') {
+        mostrarEquipo(req, res);
+      } 
+      else if (url === '/opinion') {
+        mostrarOpinion(req, res);
+      } 
+        else if (url === '/api/perfil') {
+        getPerfil(req, res);
+      } 
+      else if (url === '/api/equipo') {
+        getEquipo(req, res);
+      } 
+        else if (url === '/api/externa') {
+      getApiExterna(req, res);
+    }
+    else {
+      manejarRuta404(req, res);
+    }
+    });
+     
       //Haz una página equipo.html correspondiente
       //Escribe el nombre completo y una cualidad que valores en esa persona de tu equipo
       //Trata de agregar una imagen a equipo.html
