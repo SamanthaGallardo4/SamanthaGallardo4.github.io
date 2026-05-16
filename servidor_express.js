@@ -154,7 +154,16 @@ async function getApiExterna(req, res) {
     res.end('Error al consumir la API externa');
   }
 }
+function mostrarArbol(req, res) {
+  fs.readFile('arbol.html', 'utf8', (error, data) => {
+    if (error) {
+      res.status(500).send('No se pudo cargar arbol.html');
+      return;
+    }
 
+    res.status(200).send(data);
+  });
+}
 
     function manejarRuta404(req, res) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -177,6 +186,7 @@ async function getApiExterna(req, res) {
       app.get('/api/perfil',getPerfil);
       app.get('/api/equipo',getPerfil);
       app.get('/api/externa',getApiExterna);
+      app.get('/arbol',mostrarArbol);
       app.use(manejarRuta404);
    
      
