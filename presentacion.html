@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glitch Run - Presentación Final</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #060716;
+      color: #f4f4ff;
+      font-family: "Courier New", monospace;
+      overflow: hidden;
+    }
+
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      padding: 80px 110px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 0, 200, 0.18), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(0, 255, 255, 0.16), transparent 35%),
+        linear-gradient(135deg, #050612, #090b25 60%, #03040c);
+      position: relative;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .logo {
+      position: absolute;
+      top: 35px;
+      left: 50px;
+      color: #00f7ff;
+      letter-spacing: 5px;
+      font-weight: bold;
+      text-shadow: 0 0 12px #00f7ff;
+    }
+
+    .number {
+      position: absolute;
+      bottom: 35px;
+      right: 50px;
+      color: #ff22c7;
+      font-size: 22px;
+      letter-spacing: 3px;
+    }
+
+    h1 {
+      font-size: 62px;
+      letter-spacing: 7px;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 42px;
+      color: #00f7ff;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      text-shadow: 0 0 15px #00f7ff;
+    }
+
+    h3 {
+      font-size: 24px;
+      color: #ff22c7;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    p, li {
+      font-size: 25px;
+      line-height: 1.7;
+      color: #d8d8ee;
+      max-width: 900px;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 20px;
+    }
+
+    li::before {
+      content: "▸ ";
+      color: #00f7ff;
+    }
+
+    .pink {
+      color: #ff22c7;
+      text-shadow: 0 0 15px #ff22c7;
+    }
+
+    .cyan {
+      color: #00f7ff;
+      text-shadow: 0 0 15px #00f7ff;
+    }
+
+    .quote {
+      border-left: 5px solid #ff22c7;
+      padding-left: 25px;
+      font-style: italic;
+      color: white;
+      margin: 30px 0;
+      font-size: 28px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .card {
+      border: 1px solid rgba(0, 255, 255, 0.5);
+      padding: 28px;
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.08);
+    }
+
+    .card h3 {
+      color: #00f7ff;
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid #00f7ff;
+      color: #00f7ff;
+      padding: 10px 18px;
+      margin: 8px;
+      letter-spacing: 2px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 35px;
+      left: 50px;
+      color: #6f6f94;
+      font-size: 15px;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 99;
+    }
+
+    button {
+      background: transparent;
+      color: #00f7ff;
+      border: 1px solid #00f7ff;
+      padding: 10px 18px;
+      margin: 5px;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: 2px;
+    }
+
+    button:hover {
+      background: #00f7ff;
+      color: #060716;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="slide active">
+    <div class="logo">GLITCH RUN</div>
+    <h1><span class="cyan">GLITCH RUN:</span><br>EXPECT THE <span class="pink">UNEXPECTED</span></h1>
+    <h3>Prototipo funcional — Equipo 1</h3>
+    <p>Isaac Chávez · Mailen Gallardo · Gaby Ruelas · Emilio Guzmán</p>
+    <p class="quote">"No es un bug. Es el juego jugando en tu contra."</p>
+    <div class="number">01</div>
+  </section>
+
+  <section class="slide">
+    <div class="logo">GLITCH RUN</div>
+    <h2>¿Qué es Glitch Run?</h2>
+    <h1>El juego que <span class="cyan">te juega</span> a ti</h1>
+    <p>
+      Glitch Run es un videojuego de plataformas 2D con estética pixel art,
+      inspirado en glitches y errores digitales. El jugador avanza dentro de
+      un sistema defectuoso donde las reglas cambian constantemente.
+    </p>
+    <br>
+    <div>
+      <span class="tag">Plataformas 2D</span>
+      <span class="tag">Pixel Art</span>
+      <span class="tag">Neon / Futurista</span>
+      <span class="tag">Unity Engine</span>
+      <span class="tag">C#</span>
+    </div>
+    <div class="number">02</div>
+  </section>
+
+  <section class="slide">
+    <div class="logo">GLITCH RUN</div>
+    <h2>Historia</h2>
+    <h1>Atrapado en un <span class="pink">sistema roto</span></h1>
+    <p>
+      El personaje despierta dentro de un sistema digital defectuoso.
+      El entorno comienza a colapsar: las leyes físicas fallan, el mundo
+      glitchea y lo que parecía seguro deja de serlo.
+    </p>
+    <p class="quote">Su único objetivo es escapar antes de que el sistema lo consuma por completo.</p>
+    <div class="number">03</div>
+  </section>
+
+  <section class="slide">
+    <div class="logo">GLITCH RUN</div>
+    <h2>Gameplay</h2>
+    <h1>Mecánicas implementadas</h1>
+    <div class="cards">
+      <div class="card">
+        <h3>Movimiento & Dash</h3>
+        <p>Desplazamiento lateral y dash con cooldown.</p>
+      </div>
+      <div class="card">
+        <h3>Sistema de Salto</h3>
+        <p>Salto preciso con detección de suelo.</p>
+      </div>
+      <div class="card">
+        <h3>Vidas, Score y Timer</h3>
+        <p>HUD con corazones, puntuación y tiempo.</p>
+      </div>
+      <div class="card">
+        <h3>Portal de Salida</h3>
+        <p>Finaliza el nivel y lleva a victoria o derrota.</p>
+      </div>
+    </div>
+    <div class="number">04</div>
+  </section>
+
+  <section class="slide">
+    <div class="logo">GLITCH RUN</div>
+    <h2>Sistema Glitch</h2>
+    <h1>El corazón del juego</h1>
+    <p>
+      Eventos aleatorios que rompen las reglas en tiempo real y obligan al
+      jugador a adaptarse mientras sigue avanzando.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Glitch #01</h3>
+        <p>Inversión de gravedad.</p>
+      </div>
+      <div class="card">
+        <h3>Glitch #02</h3>
+        <p>Controles invertidos.</p>
+      </div>
+      <div class="card">
+        <h3>Glitch #03</h3>
+        <p>Plataformas falsas.</p>
+      </div>
+      <div class="card">
+        <h3>Warning</h3>
+        <p>El sistema intenta detenerte.</p>
+      </div>
+    </div>
+    <div class="number">05</div>
+  </section>
+
+  <section class="slide">
+    <div class="logo">GLITCH RUN</div>
+    <h2>Inspiración</h2>
+    <h1>Juegos que nos formaron</h1>
+    <ul>
+      <li>Celeste — precisión y dificultad progresiva.</li>
+      <li>Super Meat Boy — velocidad y respawn inmediato.</li>
+      <li>Getting Over It — frustración como mecánica.</li>
+      <li>Geometry Dash — ritmo, obstáculos y estética neon.</li>
+    </ul>
+    <div class="number">06</div>
+  </section>
+
+  <section class="slide">
+    <div class="logo">GLITCH RUN</div>
+    <h2>Arte y Diseño</h2>
+    <h1>Estética <span class="pink">digital</span> y <span class="cyan">glitch</span></h1>
+    <ul>
+      <li>Pixel Art 2D</li>
+      <li>Estética futurista</li>
+      <li>Colores neón</li>
+      <li>Efectos visuales glitch</li>
+      <li>Ambiente digital</li>
+    </ul>
+    <div class="number">07</div>
+  </section>
+
+  <section class="slide">
+    <div class="logo">GLITCH RUN</div>
+    <h2>Prototipo Funcional</h2>
+    <h1>Todo lo que logramos</h1>
+    <ul>
+      <li>Menú principal y menú de pausa.</li>
+      <li>Nivel tutorial y nivel principal.</li>
+      <li>Movimiento, salto, dash y colisiones.</li>
+      <li>Sistema de vidas, score y temporizador.</li>
+      <li>HUD completo con alertas glitch.</li>
+      <li>Pantalla de victoria y Game Over.</li>
+      <li>Audio Manager y flujo completo del juego.</li>
+    </ul>
+    <div class="number">08</div>
+  </section>
+
+  <section class="slide">
+    <div class="logo">GLITCH RUN</div>
+    <h2>Logros del Proyecto</h2>
+    <h1>Resultados obtenidos</h1>
+    <ul>
+      <li>Sistema funcional completo.</li>
+      <li>Integración de glitches principales.</li>
+      <li>Flujo completo: Tutorial → Nivel 1 → Victoria / Derrota.</li>
+      <li>Base sólida para agregar nuevos niveles y mecánicas.</li>
+    </ul>
+    <div class="number">09</div>
+  </section>
+
+  <section class="slide">
+    <div class="logo">GLITCH RUN</div>
+    <h2>Conclusión</h2>
+    <h1>Expect the <span class="pink">Unexpected</span></h1>
+    <p>
+      Glitch Run propone una experiencia distinta dentro de los juegos de plataformas.
+      El reto no es solo superar obstáculos, sino adaptarse a un mundo que cambia
+      constantemente.
+    </p>
+    <p class="quote">El verdadero enemigo es el sistema.</p>
+    <div class="number">10</div>
+  </section>
+
+  <div class="controls">
+    <button onclick="prevSlide()">Anterior</button>
+    <button onclick="nextSlide()">Siguiente</button>
+  </div>
+
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll(".slide");
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove("active"));
+      slides[index].classList.add("active");
+    }
+
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+
+    function prevSlide() {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    }
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "ArrowRight") nextSlide();
+      if (e.key === "ArrowLeft") prevSlide();
+    });
+  </script>
+
+</body>
+</html>
