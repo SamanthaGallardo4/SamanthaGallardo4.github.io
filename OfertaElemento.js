@@ -15,4 +15,4 @@ class OfertaElemento extends HTMLElement {
   }
 }
 
-customElements.define("oferta-elemento", OfertaElemento); 
+customElements.define("oferta-elemento", OfertaElemento) ; 
